@@ -1,6 +1,6 @@
 /* Light grey background and Jost for text (my additions); your palette colours mark links and pages.
    Newsreader is only used for your name and the page titles. */
-:root{--col:58rem;--bg:#ebebe9;--surface:#f6f6f4;--fg:#1f2124;--sub:#55575b;--line:#cfcfcb;--ph:#dcdcd9;--orange:#b93e0a;--orange-text:#a83808;--on-orange:#f6f6f4;
+:root{--col:46rem;--wide:72rem;--edge:max(var(--g),calc((100% - var(--wide))/2));--bg:#ebebe9;--surface:#f6f6f4;--fg:#1f2124;--sub:#55575b;--line:#cfcfcb;--ph:#dcdcd9;--orange:#b93e0a;--orange-text:#a83808;--on-orange:#f6f6f4;
   --a-research:#7d6200;--a-writing:#a83808;--a-policy:#7a2420;--a-teaching:#315c9f;--a-about:#424821;--yellow:#f8efc4;
   --serif:"Newsreader",Georgia,"Times New Roman",serif;--sans:"Jost","Helvetica Neue",Helvetica,Arial,sans-serif;--tw:400;--lw:500;--g:clamp(1.25rem,3vw,2rem);
   color-scheme:light;box-sizing:border-box;scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px);
@@ -24,7 +24,7 @@ main.about{--accent:var(--a-about);--title:var(--a-about)}
 main.outreach{--accent:var(--a-policy);--title:var(--a-policy)}
 
 /* Header */
-.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.5rem 1.5rem;padding:1rem var(--g);background:var(--bg)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.5rem 1.5rem;padding:1rem var(--edge);background:var(--bg)}
 .top a{text-decoration:none}
 .top nav{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem 1.4rem}
 .top nav [aria-current]{text-decoration:underline;text-decoration-color:var(--orange);text-decoration-thickness:2px}
@@ -32,12 +32,11 @@ main.outreach{--accent:var(--a-policy);--title:var(--a-policy)}
 .pill:hover{background:var(--orange-text);border-color:var(--orange-text);color:var(--on-orange)}
 
 /* Home: your name in burnt orange, overlapping the portrait */
-.hero{min-height:calc(100svh - 4.5rem);display:grid;grid-template-columns:1.35fr .65fr;grid-template-rows:auto 1fr;gap:0 2.5rem;padding:4rem var(--g) 3rem}
-.hero h1{grid-area:1/1/2/3;position:relative;z-index:1;margin:0;color:#cc5500;font:300 clamp(3.2rem,12.5vw,12.5rem)/.88 var(--serif);letter-spacing:-.025em}
+.hero{min-height:calc(100svh - 4.5rem);display:grid;grid-template-columns:1.35fr .65fr;grid-template-rows:auto 1fr;gap:0 2.5rem;padding:4rem var(--edge) 3rem}
+.hero h1{grid-area:1/1/2/3;position:relative;z-index:1;margin:0;color:#cc5500;font:300 clamp(3.2rem,12.5vw,10rem)/.88 var(--serif);letter-spacing:-.025em}
 .portrait{grid-area:1/2/3/3;margin-top:0;height:max(22rem,calc(100svh - 16rem));object-fit:cover;object-position:50% 8%}
 .intro{grid-area:2/1;align-self:end;max-width:30rem;padding-top:2.5rem}
 .intro .lead{font-size:clamp(1.5rem,2.6vw,2.4rem);line-height:1.3}
-.more{max-width:38rem}
 .more p{margin:0 0 1rem}
 .intro p{margin:0 0 1rem}
 .lead{margin:0 0 1rem;font-size:clamp(1.2rem,1.7vw,1.45rem);font-weight:300;line-height:1.45}
@@ -49,8 +48,9 @@ main.outreach{--accent:var(--a-policy);--title:var(--a-policy)}
 .banner h1{align-self:end;width:min(100% - 2*var(--g),var(--col));margin:0 auto -.1em;color:var(--title);font:300 clamp(3rem,9vw,8.5rem)/.9 var(--serif);letter-spacing:-.025em}
 
 /* Rows: label | side note | content */
-.row{display:grid;grid-template-columns:minmax(0,1fr);gap:.6rem;width:min(100% - 2*var(--g),var(--col));margin:0 auto;padding:1.25rem 0 2.5rem;border-top:1px solid var(--line);align-items:start}
-.row>*{grid-column:1}
+.row{display:grid;grid-template-columns:1fr minmax(0,var(--col)) 1fr;gap:.6rem;width:min(100% - 2*var(--g),var(--wide));margin:0 auto;padding:1.25rem 0 2.5rem;border-top:1px solid var(--line);align-items:start}
+.row>*{grid-column:2}
+.row>.wide{grid-column:1/-1}
 .row>.side{margin-bottom:.4rem}
 .label,.card-head h3,.fold>summary{margin:0;color:var(--accent);font:var(--lw) .78rem/1.5 var(--sans);letter-spacing:.07em;text-transform:uppercase}
 .side{margin:0;font-size:.95rem}
@@ -71,7 +71,7 @@ summary{cursor:pointer;list-style:none}
 summary::-webkit-details-marker{display:none}
 summary::after{content:"+";display:grid;place-items:center;width:1.7rem;height:1.7rem;margin-left:auto;border-radius:50%;background:var(--accent);color:var(--bg);font:400 1.15rem/1 var(--sans)}
 details[open] summary::after{content:"−"}
-details p{margin:0 0 1.5rem;max-width:38rem}
+details p{margin:0 0 1.5rem}
 
 /* Substack posts (filled in by update_posts.py) */
 .card{padding:1.5rem 2rem 2rem;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
@@ -99,13 +99,13 @@ details p{margin:0 0 1.5rem;max-width:38rem}
 /* Fonts: Newsreader only for your name and page titles; Helvetica for everything else */
 
 /* Picture rows */
-.tiles{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;width:min(100% - 2*var(--g),var(--col));margin:0 auto;padding:1.5rem 0 4.5rem}
+.tiles{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;width:min(100% - 2*var(--g),var(--wide));margin:0 auto;padding:1.5rem 0 4.5rem}
 .tiles a{text-decoration:none;color:var(--c)}
 .tiles img{aspect-ratio:4/5;object-fit:cover;margin-bottom:.6rem;border-bottom:4px solid var(--c)}
 .tiles a:hover span{text-decoration:underline;text-decoration-thickness:2px}
 .strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;padding-top:1rem}
 
-footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;padding:2rem var(--g) 3rem;background:var(--surface);border-top:1px solid var(--line);color:var(--sub);font-size:.9rem}
+footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;padding:2rem var(--edge) 3rem;background:var(--surface);border-top:1px solid var(--line);color:var(--sub);font-size:.9rem}
 footer a+a{margin-left:1.2rem}
 
 @media (max-width:760px){
@@ -133,8 +133,7 @@ footer a+a{margin-left:1.2rem}
 .bullets li::marker{color:var(--accent)}
 .bullets strong{font-weight:500}
 .bullets .meta{display:block}
-.more{max-width:46rem}
-details p{max-width:46rem}
 .intro .small{font-size:1rem;line-height:1.55;margin:1.25rem 0 0}
 details p{font-size:.92rem;line-height:1.55;color:var(--sub)}
 details p{margin:0 0 .75rem}details p:last-child{margin-bottom:1.25rem}
+@media (max-width:760px){.row{grid-template-columns:minmax(0,1fr)}.row>*,.row>.wide{grid-column:1}}
