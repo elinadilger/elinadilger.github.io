@@ -1,0 +1,130 @@
+/* Light grey background and Jost for text (my additions); your palette colours mark links and pages.
+   Newsreader is only used for your name and the page titles. */
+:root{--bg:#ebebe9;--surface:#f6f6f4;--fg:#1f2124;--sub:#55575b;--line:#cfcfcb;--ph:#dcdcd9;--orange:#b93e0a;--orange-text:#a83808;--on-orange:#f6f6f4;
+  --a-research:#7d6200;--a-writing:#a83808;--a-policy:#7a2420;--a-teaching:#315c9f;--a-about:#424821;--yellow:#f8efc4;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;--sans:"Jost","Helvetica Neue",Helvetica,Arial,sans-serif;--tw:400;--lw:500;--g:clamp(1.25rem,3vw,2rem);
+  color-scheme:light;box-sizing:border-box;scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px);
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,::before,::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--fg);font:1.125rem/1.6 var(--sans);font-weight:var(--tw)}
+
+a{color:inherit;text-decoration-color:var(--orange);text-decoration-thickness:2px;text-underline-offset:.2em}
+a:hover{color:var(--orange-text)}
+main a{color:var(--accent);text-decoration-color:currentColor}
+main a:hover{color:var(--accent);text-decoration-thickness:3px}
+a:focus-visible,summary:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+img{display:block;width:100%;height:auto}
+
+/* Page colours: research and teaching blue, writing moss, outreach ruby, about orange */
+main{--accent:var(--orange-text);--title:var(--orange)}
+main.research{--accent:var(--a-research);--title:var(--a-research);--surface:var(--yellow)}
+main.teaching{--accent:var(--a-teaching);--title:var(--a-teaching)}
+main.writing{--accent:var(--a-writing);--title:var(--orange)}
+main.about{--accent:var(--a-about);--title:var(--a-about)}
+main.outreach{--accent:var(--a-policy);--title:var(--a-policy)}
+
+/* Header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.5rem 1.5rem;padding:1rem var(--g);background:var(--bg)}
+.top a{text-decoration:none}
+.top nav{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem 1.4rem}
+.top nav [aria-current]{text-decoration:underline;text-decoration-color:var(--orange);text-decoration-thickness:2px}
+.pill{padding:.45rem 1.4rem;border:1px solid var(--fg);border-radius:50%}
+.pill:hover{background:var(--orange-text);border-color:var(--orange-text);color:var(--on-orange)}
+
+/* Home: your name in burnt orange, overlapping the portrait */
+.hero{min-height:calc(100svh - 4.5rem);display:grid;grid-template-columns:1.35fr .65fr;grid-template-rows:auto 1fr;gap:0 2.5rem;padding:4rem var(--g) 3rem}
+.hero h1{grid-area:1/1/2/3;position:relative;z-index:1;margin:0;color:#cc5500;font:300 clamp(3.2rem,12.5vw,12.5rem)/.88 var(--serif);letter-spacing:-.025em}
+.portrait{grid-area:1/2/3/3;margin-top:0;height:max(22rem,calc(100svh - 16rem));object-fit:cover;object-position:50% 8%}
+.intro{grid-area:2/1;align-self:end;max-width:30rem;padding-top:2.5rem}
+.intro .lead{font-size:clamp(1.35rem,2.1vw,1.85rem);line-height:1.4}
+.more{max-width:38rem}
+.more p{margin:0 0 1rem}
+.intro p{margin:0 0 1rem}
+.lead{margin:0 0 1rem;font-size:clamp(1.2rem,1.7vw,1.45rem);font-weight:300;line-height:1.45}
+
+/* Sub-pages: photo fading into the page, title in the page colour */
+.banner{display:grid;margin-bottom:3rem}
+.banner>*{grid-area:1/1}
+.banner img{height:min(58vh,42vw);object-fit:cover;-webkit-mask-image:linear-gradient(#000 45%,transparent);mask-image:linear-gradient(#000 45%,transparent)}
+.banner h1{align-self:end;margin:0 var(--g) -.1em;color:var(--title);font:300 clamp(3.5rem,12vw,11.5rem)/.9 var(--serif);letter-spacing:-.025em}
+
+/* Rows: label | side note | content */
+.row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem 2rem;margin:0 var(--g);padding:1.25rem 0 4.5rem;border-top:1px solid var(--line)}
+.row>.lead,.row>:last-child{grid-column:3/-1}
+.row>.wide{grid-column:1/-1}
+.label,.card-head h3,.fold>summary{margin:0;color:var(--accent);font:var(--lw) .78rem/1.5 var(--sans);letter-spacing:.07em;text-transform:uppercase}
+.side{margin:0;font-size:.95rem}
+.side p{margin:0 0 1rem}
+.meta{color:var(--sub);font:var(--tw) .95rem/1.5 var(--sans)}
+
+/* Lists and the accordion */
+.list{margin:0;padding:0;list-style:none}
+.list li,summary{display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem 1rem;padding:1rem 0;font-size:1.15rem;line-height:1.4}
+.list li{border-bottom:1px solid var(--line)}
+.list li:first-child{padding-top:0}
+.list .meta{margin-left:auto}
+.stack li{display:block}
+.stack .meta{display:block;margin:.35rem 0 0}
+details{border-top:1px solid var(--line)}
+details:last-of-type{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";display:grid;place-items:center;width:1.7rem;height:1.7rem;margin-left:auto;border-radius:50%;background:var(--accent);color:var(--bg);font:400 1.15rem/1 var(--sans)}
+details[open] summary::after{content:"−"}
+details p{margin:0 0 1.5rem;max-width:38rem}
+
+/* Substack posts (filled in by update_posts.py) */
+.card{padding:1.5rem 2rem 2rem;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.card-head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:1.5rem}
+.card-head h3{color:var(--sub)}
+.card-head a{color:var(--sub);text-decoration:none;font-size:.95rem}
+.card-head a:hover{color:var(--fg)}
+.posts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2rem 1.75rem}
+.post{display:block;text-decoration:none;color:var(--fg)!important}
+.post img,.noimg{display:block;aspect-ratio:1;object-fit:cover;margin-bottom:.9rem;border-radius:8px;background:var(--ph)}
+.post time{color:var(--sub);font-size:.9rem}
+.post strong{display:block;margin-top:.25rem;font-size:1.05rem;font-weight:var(--tw);line-height:1.4}
+.post:hover strong{text-decoration:underline;text-decoration-color:var(--orange);text-decoration-thickness:2px}
+
+/* Collapsible section on the home page */
+.fold{margin:0 var(--g) 3rem;padding-bottom:1rem;border-bottom:0!important}
+.fold>summary{justify-content:space-between;padding:1.75rem 0}
+.fold>summary::after{content:"";width:.6rem;height:.6rem;margin-right:.3rem;border:solid var(--fg);border-width:2px 2px 0 0;border-radius:0;background:none;transform:rotate(-45deg)}
+.fold:not([open])>summary::after{transform:rotate(135deg)}
+.fold-lead{margin:0 0 2rem!important;max-width:44rem!important;font-size:clamp(1.2rem,1.7vw,1.45rem);line-height:1.45}
+
+/* Grey panels (formerly the coloured bands) */
+.band{margin-bottom:2.5rem;padding-top:3rem;background:var(--surface)}
+
+/* Fonts: Newsreader only for your name and page titles; Helvetica for everything else */
+
+/* Picture rows */
+.tiles{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;margin:0 var(--g);padding:1.5rem 0 4.5rem}
+.tiles a{text-decoration:none;color:var(--c)}
+.tiles img{aspect-ratio:4/5;object-fit:cover;margin-bottom:.6rem;border-bottom:4px solid var(--c)}
+.tiles a:hover span{text-decoration:underline;text-decoration-thickness:2px}
+.strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;padding-top:1rem}
+
+footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;padding:2rem var(--g) 3rem;background:var(--surface);border-top:1px solid var(--line);color:var(--sub);font-size:.9rem}
+footer a+a{margin-left:1.2rem}
+
+@media (max-width:760px){
+  .top{position:static}.top nav{gap:.3rem .9rem;font-size:.92rem}
+  .hero{grid-template-columns:1fr}.hero h1,.portrait,.intro{grid-area:auto}.portrait{margin-top:1.5rem;height:auto}.hero{min-height:0;padding-top:2.5rem}
+  .row{grid-template-columns:1fr}.row>.lead,.row>:last-child,.row>.wide{grid-column:auto}
+  .tiles,.strip,.posts{grid-template-columns:1fr 1fr}.card{padding:1.25rem}.post strong{font-size:1.1rem}
+  .banner img{height:45vh}
+}
+@media (prefers-reduced-motion:reduce){:root{scroll-behavior:auto}}
+
+/* Publications, laid out like an academic site: title, authors, venue · year · status, link */
+.pubs li{display:block;padding:1.1rem 0 1.25rem}
+.pubs h3{margin:0 0 .35rem;font-size:1.2rem;font-weight:500;line-height:1.35}
+.pubs h3 a{color:var(--fg);text-decoration:none}
+.pubs h3 a:hover{text-decoration:underline;text-decoration-color:var(--accent)}
+.pubs p{margin:0;color:var(--sub);font-size:.95rem}
+.pubs .paper{display:inline-block;margin-top:.5rem;font-size:.95rem}
+
+/* Skip link for keyboard users, visible only when focused */
+.skip{position:absolute;left:-999px;top:0}
+.skip:focus{left:1rem;top:1rem;z-index:99;padding:.5rem 1rem;background:var(--surface);color:var(--fg)}
