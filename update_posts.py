@@ -35,7 +35,7 @@ for path, tag, n in [('writing.html', 'POSTS', 50), ('index.html', 'LATEST', 4)]
     except FileNotFoundError:
         sys.exit(f'{path} is not at the top level of the repository.')
     if f'<!-- {tag} -->' not in page:
-        sys.exit(f'{path} is missing the <!-- {tag} --> marker, so there is nowhere to put the posts.')
+        print(f'{path} has no posts section; skipped.'); continue
     new = f'<!-- {tag} -->\n' + '\n'.join(cards[:n]) + f'\n<!-- /{tag} -->'
     open(path, 'w', encoding='utf-8').write(re.sub(f'<!-- {tag} -->.*?<!-- /{tag} -->', lambda m: new, page, flags=re.S))
 print(f'Updated {len(cards)} posts.')

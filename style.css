@@ -17,7 +17,7 @@ img{display:block;width:100%;height:auto}
 
 /* Page colours: research and teaching blue, writing moss, outreach ruby, about orange */
 main{--accent:var(--orange-text);--title:var(--orange)}
-main.research{--accent:var(--a-research);--title:var(--a-research);--surface:var(--yellow)}
+main.research{--accent:var(--a-research);--title:var(--a-research)}
 main.teaching{--accent:var(--a-teaching);--title:var(--a-teaching)}
 main.writing{--accent:var(--a-writing);--title:var(--orange)}
 main.about{--accent:var(--a-about);--title:var(--a-about)}
@@ -36,22 +36,22 @@ main.outreach{--accent:var(--a-policy);--title:var(--a-policy)}
 .hero h1{grid-area:1/1/2/3;position:relative;z-index:1;margin:0;color:#cc5500;font:300 clamp(3.2rem,12.5vw,12.5rem)/.88 var(--serif);letter-spacing:-.025em}
 .portrait{grid-area:1/2/3/3;margin-top:0;height:max(22rem,calc(100svh - 16rem));object-fit:cover;object-position:50% 8%}
 .intro{grid-area:2/1;align-self:end;max-width:30rem;padding-top:2.5rem}
-.intro .lead{font-size:clamp(1.35rem,2.1vw,1.85rem);line-height:1.4}
+.intro .lead{font-size:clamp(1.5rem,2.6vw,2.4rem);line-height:1.3}
 .more{max-width:38rem}
 .more p{margin:0 0 1rem}
 .intro p{margin:0 0 1rem}
 .lead{margin:0 0 1rem;font-size:clamp(1.2rem,1.7vw,1.45rem);font-weight:300;line-height:1.45}
 
 /* Sub-pages: photo fading into the page, title in the page colour */
-.banner{display:grid;margin-bottom:3rem}
+.banner{display:grid;margin-bottom:2rem}
 .banner>*{grid-area:1/1}
-.banner img{height:min(58vh,42vw);object-fit:cover;-webkit-mask-image:linear-gradient(#000 45%,transparent);mask-image:linear-gradient(#000 45%,transparent)}
-.banner h1{align-self:end;margin:0 var(--g) -.1em;color:var(--title);font:300 clamp(3.5rem,12vw,11.5rem)/.9 var(--serif);letter-spacing:-.025em}
+.banner img{height:min(44vh,32vw);object-fit:cover;-webkit-mask-image:linear-gradient(#000 45%,transparent);mask-image:linear-gradient(#000 45%,transparent)}
+.banner h1{align-self:end;margin:0 var(--g) -.1em;color:var(--title);font:300 clamp(3rem,9vw,8.5rem)/.9 var(--serif);letter-spacing:-.025em}
 
 /* Rows: label | side note | content */
-.row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem 2rem;margin:0 var(--g);padding:1.25rem 0 4.5rem;border-top:1px solid var(--line)}
-.row>.lead,.row>:last-child{grid-column:3/-1}
-.row>.wide{grid-column:1/-1}
+.row{display:grid;grid-template-columns:minmax(0,56rem);gap:.6rem;margin:0 var(--g);padding:1.25rem 0 2.5rem;border-top:1px solid var(--line);align-items:start}
+.row>*{grid-column:1}
+.row>.side{margin-bottom:.4rem}
 .label,.card-head h3,.fold>summary{margin:0;color:var(--accent);font:var(--lw) .78rem/1.5 var(--sans);letter-spacing:.07em;text-transform:uppercase}
 .side{margin:0;font-size:.95rem}
 .side p{margin:0 0 1rem}
@@ -59,7 +59,7 @@ main.outreach{--accent:var(--a-policy);--title:var(--a-policy)}
 
 /* Lists and the accordion */
 .list{margin:0;padding:0;list-style:none}
-.list li,summary{display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem 1rem;padding:1rem 0;font-size:1.15rem;line-height:1.4}
+.list li,summary{display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem 1rem;padding:.65rem 0;font-size:1.02rem;line-height:1.45}
 .list li{border-bottom:1px solid var(--line)}
 .list li:first-child{padding-top:0}
 .list .meta{margin-left:auto}
@@ -111,20 +111,30 @@ footer a+a{margin-left:1.2rem}
 @media (max-width:760px){
   .top{position:static}.top nav{gap:.3rem .9rem;font-size:.92rem}
   .hero{grid-template-columns:1fr}.hero h1,.portrait,.intro{grid-area:auto}.portrait{margin-top:1.5rem;height:auto}.hero{min-height:0;padding-top:2.5rem}
-  .row{grid-template-columns:1fr}.row>.lead,.row>:last-child,.row>.wide{grid-column:auto}
+  
   .tiles,.strip,.posts{grid-template-columns:1fr 1fr}.card{padding:1.25rem}.post strong{font-size:1.1rem}
   .banner img{height:45vh}
 }
 @media (prefers-reduced-motion:reduce){:root{scroll-behavior:auto}}
 
 /* Publications, laid out like an academic site: title, authors, venue · year · status, link */
-.pubs li{display:block;padding:1.1rem 0 1.25rem}
-.pubs h3{margin:0 0 .35rem;font-size:1.2rem;font-weight:500;line-height:1.35}
-.pubs h3 a{color:var(--fg);text-decoration:none}
-.pubs h3 a:hover{text-decoration:underline;text-decoration-color:var(--accent)}
+.pubs li{display:block;padding:.8rem 0 .9rem}
+.pubs h3{margin:0 0 .25rem;font-size:1.05rem;font-weight:500;line-height:1.4}
 .pubs p{margin:0;color:var(--sub);font-size:.95rem}
-.pubs .paper{display:inline-block;margin-top:.5rem;font-size:.95rem}
+.pubs .paper{display:inline-block;margin-top:.35rem;font-size:.95rem}
 
 /* Skip link for keyboard users, visible only when focused */
 .skip{position:absolute;left:-999px;top:0}
 .skip:focus{left:1rem;top:1rem;z-index:99;padding:.5rem 1rem;background:var(--surface);color:var(--fg)}
+
+/* Bullet lists (Outreach, Teaching, About text) */
+.bullets{margin:0 0 1rem;padding-left:1.15rem}
+.bullets li{padding:.3rem 0;line-height:1.5}
+.bullets li::marker{color:var(--accent)}
+.bullets strong{font-weight:500}
+.bullets .meta{display:block}
+.more{max-width:46rem}
+details p{max-width:46rem}
+.intro .small{font-size:1rem;line-height:1.55;margin:1.25rem 0 0}
+details p{font-size:.92rem;line-height:1.55;color:var(--sub)}
+details p{margin:0 0 .75rem}details p:last-child{margin-bottom:1.25rem}
