@@ -1,6 +1,6 @@
 /* Light grey background and Jost for text (my additions); your palette colours mark links and pages.
    Newsreader is only used for your name and the page titles. */
-:root{--bg:#ebebe9;--surface:#f6f6f4;--fg:#1f2124;--sub:#55575b;--line:#cfcfcb;--ph:#dcdcd9;--orange:#b93e0a;--orange-text:#a83808;--on-orange:#f6f6f4;
+:root{--col:58rem;--bg:#ebebe9;--surface:#f6f6f4;--fg:#1f2124;--sub:#55575b;--line:#cfcfcb;--ph:#dcdcd9;--orange:#b93e0a;--orange-text:#a83808;--on-orange:#f6f6f4;
   --a-research:#7d6200;--a-writing:#a83808;--a-policy:#7a2420;--a-teaching:#315c9f;--a-about:#424821;--yellow:#f8efc4;
   --serif:"Newsreader",Georgia,"Times New Roman",serif;--sans:"Jost","Helvetica Neue",Helvetica,Arial,sans-serif;--tw:400;--lw:500;--g:clamp(1.25rem,3vw,2rem);
   color-scheme:light;box-sizing:border-box;scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px);
@@ -46,10 +46,10 @@ main.outreach{--accent:var(--a-policy);--title:var(--a-policy)}
 .banner{display:grid;margin-bottom:2rem}
 .banner>*{grid-area:1/1}
 .banner img{height:min(44vh,32vw);object-fit:cover;-webkit-mask-image:linear-gradient(#000 45%,transparent);mask-image:linear-gradient(#000 45%,transparent)}
-.banner h1{align-self:end;margin:0 var(--g) -.1em;color:var(--title);font:300 clamp(3rem,9vw,8.5rem)/.9 var(--serif);letter-spacing:-.025em}
+.banner h1{align-self:end;width:min(100% - 2*var(--g),var(--col));margin:0 auto -.1em;color:var(--title);font:300 clamp(3rem,9vw,8.5rem)/.9 var(--serif);letter-spacing:-.025em}
 
 /* Rows: label | side note | content */
-.row{display:grid;grid-template-columns:minmax(0,56rem);gap:.6rem;margin:0 var(--g);padding:1.25rem 0 2.5rem;border-top:1px solid var(--line);align-items:start}
+.row{display:grid;grid-template-columns:minmax(0,1fr);gap:.6rem;width:min(100% - 2*var(--g),var(--col));margin:0 auto;padding:1.25rem 0 2.5rem;border-top:1px solid var(--line);align-items:start}
 .row>*{grid-column:1}
 .row>.side{margin-bottom:.4rem}
 .label,.card-head h3,.fold>summary{margin:0;color:var(--accent);font:var(--lw) .78rem/1.5 var(--sans);letter-spacing:.07em;text-transform:uppercase}
@@ -99,7 +99,7 @@ details p{margin:0 0 1.5rem;max-width:38rem}
 /* Fonts: Newsreader only for your name and page titles; Helvetica for everything else */
 
 /* Picture rows */
-.tiles{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;margin:0 var(--g);padding:1.5rem 0 4.5rem}
+.tiles{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;width:min(100% - 2*var(--g),var(--col));margin:0 auto;padding:1.5rem 0 4.5rem}
 .tiles a{text-decoration:none;color:var(--c)}
 .tiles img{aspect-ratio:4/5;object-fit:cover;margin-bottom:.6rem;border-bottom:4px solid var(--c)}
 .tiles a:hover span{text-decoration:underline;text-decoration-thickness:2px}
