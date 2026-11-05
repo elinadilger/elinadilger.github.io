@@ -2,6 +2,8 @@ name: Sync Substack posts
 on:
   schedule:
     - cron: '0 6 * * *'   # every morning at 06:00 UTC
+  push:
+    branches: [main]       # also re-sync whenever you upload or edit files
   workflow_dispatch:       # adds a "Run workflow" button on the Actions tab
 permissions:
   contents: write
