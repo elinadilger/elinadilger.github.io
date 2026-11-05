@@ -7,6 +7,7 @@ on:
   workflow_dispatch:       # adds a "Run workflow" button on the Actions tab
 permissions:
   contents: write
+  pages: write
 jobs:
   sync:
     runs-on: ubuntu-latest
@@ -18,3 +19,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -am "Sync Substack posts" || exit 0
           git push
+          # Commits made by this workflow don't always trigger a site rebuild, so ask for one explicitly
+          gh api -X POST "repos/${{ github.repository }}/pages/builds" || true
+        env:
+          GH_TOKEN: ${{ github.token }}
